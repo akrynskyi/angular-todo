@@ -1,0 +1,25 @@
+.header {
+  padding: 20px 0px;
+  background-color: var(--neutral-secondary);
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--default-c);
+    margin-right: 40px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-grow: 1;
+  &__item {
+    display: flex;
+    &:first-child {
+      flex-grow: 1;
+    }
+  }
+}

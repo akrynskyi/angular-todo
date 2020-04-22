@@ -1,0 +1,10 @@
+.todos {
+  padding: 60px 0px;
+  background-color: var(--lighter);
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    // justify-items: center;
+    grid-gap: 20px;
+  }
+}
