@@ -2,16 +2,13 @@
   <app-header></app-header>
   <section class="todos">
     <div class="wrapper">
-      <div class="todos__container">
-        <app-todo-item></app-todo-item>
-        <app-todo-item></app-todo-item>
-        <app-todo-item></app-todo-item>
-        <app-todo-item></app-todo-item>
-        <app-todo-item></app-todo-item>
-        <app-todo-item></app-todo-item>
-        <app-todo-item></app-todo-item>
-        <app-todo-item></app-todo-item>
+      <div class="todos__container" *ngIf="todoService.tasks.length; else noTasks">
+        <app-todo-item *ngFor="let task of todoService.tasks" [taskItem]="task"></app-todo-item>
       </div>
+      <ng-template #noTasks>
+        <p>No tasks yet...</p>
+      </ng-template>
     </div>
+    <!-- close .wrapper -->
   </section>
 </router-outlet>

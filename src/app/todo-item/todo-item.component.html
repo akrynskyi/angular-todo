@@ -1,21 +1,47 @@
-<div class="todos__item">
-  <div class="todos__item-header">
-    <button class="btn-default" title="Mark as done">
-      <i class="fas fa-check-circle"></i>
-    </button>
-    <!-- <button class="btn-default">
-      <i class="fas fa-times-circle"></i>
-    </button> -->
+<div class="todos__item" [class.complete]="taskItem.complete">
+  <div class="todos__item-front">
+    <div class="todos__item-header">
+      <div class="group">
+        <button class="btn-default btn-ico" title="Remove" (click)="removeTask(taskItem.id)">
+          <i class="fas fa-eraser"></i>
+        </button>
+        <button class="btn-default btn-ico" title="Pin">
+          <i class="fas fa-thumbtack rot-ico"></i>
+        </button>
+      </div>
+      <label class="checkbox bounce">
+        <input type="checkbox" title="Mark as done" [checked]="taskItem.complete"
+          (change)="completeToggle(taskItem.id)">
+        <svg viewBox="0 0 21 21">
+          <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+        </svg>
+      </label>
+    </div>
+    <div class="todos__item-body">
+      <p>
+        {{ taskItem.body }}
+      </p>
+    </div>
+    <div class="todos__item-footer">
+      <span class="date">Task created at {{ taskItem.date | date: 'dd MMMM HH:mm'}}</span>
+    </div>
   </div>
-  <div class="todos__item-body">
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque at voluptate adipisci ducimus,
-      vero expedita culpa qui amet dicta pariatur beatae reiciendis unde voluptatum. Voluptatem nulla nisi id
-      consequuntur.
-    </p>
+  <!-- close .todos__item-front -->
+  <div class="todos__item-back">
+    <div class="todos__item-header">
+      <button class="btn-default" title="Remove" (click)="removeTask(taskItem.id)">
+        <i class="fas fa-times-circle"></i>
+      </button>
+      <button class="btn-default" title="Back" (click)="completeToggle(taskItem.id)">
+        <i class="fas fa-arrow-circle-right"></i>
+      </button>
+    </div>
+    <div class="todos__item-body center">
+      <p class="content">Task is complete</p>
+    </div>
+    <div class="todos__item-footer">
+      <span class="date">Complete at {{ taskItem.completeDate | date: 'dd MMMM HH:mm'}}</span>
+    </div>
   </div>
-  <div class="todos__item-footer">
-    <button class="btn" title="Remove task">Remove</button>
-  </div>
+  <!-- close .todos__item-back -->
 </div>
-<!-- close .todos__item -->

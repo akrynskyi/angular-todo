@@ -3,9 +3,10 @@
     <h1 class="header__title">
       Tasks todo
     </h1>
-    <form class="form">
+    <form class="form" (submit)="addTask($event)">
       <div class="form__item">
-        <input class="input-field" type="text" name="task" placeholder="Add new task...">
+        <input class="input-field" type="text" name="task" placeholder="Add new task..." [(ngModel)]="bodyContent"
+          [class.empty]="empty" (focus)="empty = false">
       </div>
       <div class="form__item">
         <button class="btn" title="Create task!">Create</button>

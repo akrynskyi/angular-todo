@@ -12,3 +12,13 @@
   font-size: 24px;
   cursor: pointer;
 }
+
+.btn-ico {
+  color: var(--neutral-regular);
+  font-size: 18px;
+  transition: all .2s cubic-bezier(.4,.0,.23,1);
+  &:hover {
+    color: var(--neutral-primary);
+    transform: scale(.9);
+  }
+}

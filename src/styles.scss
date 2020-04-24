@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @use "assets/scss/reset.scss";
 @use "assets/scss/vars.scss";
-@use "assets/scss//buttons.scss";
+@use "assets/scss/buttons.scss";
+@use "assets/scss/checkbox.scss";
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');
 
@@ -15,6 +16,8 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0px 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .input-field {
@@ -23,4 +26,16 @@ body {
   background: transparent;
   color: var(--default-c);
   border: 1px solid var(--neutral-primary);
+
+  &.empty {
+    border: 1px solid #f50;
+    &::placeholder {
+      color: #f50;
+    }
+  }
+}
+
+.rot-ico {
+  transform: rotate(45deg);
+  margin-left: 15px;
 }
