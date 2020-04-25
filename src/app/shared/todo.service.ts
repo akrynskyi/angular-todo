@@ -6,6 +6,7 @@ export interface Todo {
   date: any
   completeDate?: any
   complete: boolean
+  pinned: boolean
 }
 
 @Injectable({
@@ -13,20 +14,12 @@ export interface Todo {
 })
 export class TodoService {
 
-  public tasks: Todo[] = [
-    {
-      id: 1,
-      body: 'My first todo',
-      date: new Date(),
-      complete: false,
-    },
-    {
-      id: 2,
-      body: 'My first todo',
-      date: new Date(),
-      complete: false,
-    }
-  ]
+  public tasks: Todo[] = [];
+
+  addToList(task: Todo) {
+    this.tasks.unshift(task);
+    this.saveTasks(this.tasks);
+  }
 
   complete(id: number) {
     setTimeout(() => {
@@ -36,14 +29,31 @@ export class TodoService {
           task.completeDate = new Date;
         }
       })
+      this.saveTasks(this.tasks);
     }, 1000)
+  }
+
+  pin(id: number) {
+    this.tasks.find((task) => {
+      if (task.id === id) {
+        task.pinned = !task.pinned;
+      }
+    })
+  }
+
+  sort() {
+    return this.tasks.sort((a, b) => (a.pinned === b.pinned) ? 0 : a.pinned ? -1 : 1);
   }
 
   remove(id: number) {
     this.tasks = this.tasks.filter((task) => id !== task.id);
   }
 
-  addToList(task: Todo) {
-    this.tasks.unshift(task);
+  saveTasks(tasks: Todo[]) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
+  getTasks(): Todo[] {
+    return localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
   }
 }

@@ -1,7 +1,14 @@
 <router-outlet>
   <app-header></app-header>
   <section class="todos">
-    <div class="wrapper">
+    <div class="wrapper todos__wrapper">
+      <div class="todos__dash">
+        <div class="group">
+          <span class="todos__dash-item normal">Total tasks: {{ todoService.tasks.length }}</span>
+          <span class="todos__dash-item normal">Pinned tasks: {{ pinnedTasksTotal }}</span>
+        </div>
+        <span class="todos__dash-item large">Completed tasks: {{ 0 }}</span>
+      </div>
       <div class="todos__container" *ngIf="todoService.tasks.length; else noTasks">
         <app-todo-item *ngFor="let task of todoService.tasks" [taskItem]="task"></app-todo-item>
       </div>

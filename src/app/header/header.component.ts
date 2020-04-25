@@ -12,9 +12,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private todoService: TodoService) { }
 
-  ngOnInit(): void {
-    console.log(this.bodyContent);
-  }
+  ngOnInit(): void { }
 
   addTask(event: Event) {
     event.preventDefault();
@@ -24,8 +22,10 @@ export class HeaderComponent implements OnInit {
         body: this.bodyContent,
         date: new Date(),
         complete: false,
+        pinned: false
       }
       this.todoService.addToList(newTask);
+      this.todoService.sort();
       this.bodyContent = '';
       this.empty = false;
     } else {

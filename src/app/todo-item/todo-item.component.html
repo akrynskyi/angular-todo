@@ -5,7 +5,8 @@
         <button class="btn-default btn-ico" title="Remove" (click)="removeTask(taskItem.id)">
           <i class="fas fa-eraser"></i>
         </button>
-        <button class="btn-default btn-ico" title="Pin">
+        <button class="btn-default btn-ico" [title]="taskItem.pinned ? 'Unpin' : 'Pin'" (click)="pinTask(taskItem.id)"
+          [class.active]="taskItem.pinned">
           <i class="fas fa-thumbtack rot-ico"></i>
         </button>
       </div>

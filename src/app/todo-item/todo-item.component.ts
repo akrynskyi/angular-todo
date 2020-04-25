@@ -18,7 +18,14 @@ export class TodoItemComponent implements OnInit {
     this.todoService.complete(id);
   }
 
+  pinTask(id: number) {
+    this.todoService.pin(id);
+    this.todoService.saveTasks(this.todoService.tasks);
+    this.todoService.sort();
+  }
+
   removeTask(id: number) {
     this.todoService.remove(id);
+    this.todoService.saveTasks(this.todoService.tasks);
   }
 }

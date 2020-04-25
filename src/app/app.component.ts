@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from './shared/todo.service';
+import { TodoService, Todo } from './shared/todo.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,12 @@ import { TodoService } from './shared/todo.service';
 })
 export class AppComponent implements OnInit {
 
+  pinnedTasksTotal: number = this.todoService.tasks.reduce((acc, val) => acc + (val.pinned ? 1 : 0), 0);
+
   constructor(public todoService: TodoService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.todoService.tasks = [...this.todoService.getTasks()];
+    this.todoService.sort();
+  }
 }

@@ -21,4 +21,8 @@
     color: var(--neutral-primary);
     transform: scale(.9);
   }
+  &.active {
+    color: #f50;
+    transform: scale(.9);
+  }
 }
