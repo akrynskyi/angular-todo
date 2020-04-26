@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Todo {
   id: number
@@ -16,6 +17,9 @@ export class TodoService {
 
   public tasks: Todo[] = [];
 
+  public pinnedTasksTotal: BehaviorSubject<number> = new BehaviorSubject(0);
+  public completeTasksTotal: BehaviorSubject<number> = new BehaviorSubject(0);
+
   addToList(task: Todo) {
     this.tasks.unshift(task);
     this.saveTasks(this.tasks);
@@ -30,6 +34,7 @@ export class TodoService {
         }
       })
       this.saveTasks(this.tasks);
+      this.completeTasksTotal.next(this.calcCompleteTasksTotal());
     }, 1000)
   }
 
@@ -39,14 +44,17 @@ export class TodoService {
         task.pinned = !task.pinned;
       }
     })
+    this.pinnedTasksTotal.next(this.calcPinnedTasksTotal());
   }
 
-  sort() {
+  sort(): Todo[] {
     return this.tasks.sort((a, b) => (a.pinned === b.pinned) ? 0 : a.pinned ? -1 : 1);
   }
 
   remove(id: number) {
     this.tasks = this.tasks.filter((task) => id !== task.id);
+    this.pinnedTasksTotal.next(this.calcPinnedTasksTotal());
+    this.completeTasksTotal.next(this.calcCompleteTasksTotal());
   }
 
   saveTasks(tasks: Todo[]) {
@@ -55,5 +63,13 @@ export class TodoService {
 
   getTasks(): Todo[] {
     return localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
+  }
+
+  calcPinnedTasksTotal(): number {
+    return this.tasks.reduce((acc, val) => acc + (val.pinned ? 1 : 0), 0);
+  }
+
+  calcCompleteTasksTotal(): number {
+    return this.tasks.reduce((acc, val) => acc + (val.complete ? 1 : 0), 0);
   }
 }

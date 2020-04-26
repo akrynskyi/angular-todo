@@ -25,12 +25,12 @@ body {
   padding: 10px 20px;
   background: transparent;
   color: var(--default-c);
-  border: 1px solid var(--neutral-primary);
+  border: 1px solid var(--bgc-three);
 
   &.empty {
-    border: 1px solid #f50;
+    border: 1px solid var(--some-two);
     &::placeholder {
-      color: #f50;
+      color: var(--some-two);
     }
   }
 }

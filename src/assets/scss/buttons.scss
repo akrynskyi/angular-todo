@@ -1,6 +1,6 @@
 .btn {
   width: 100%;
-  background-color: var(--neutral-main);
+  background-color: var(--bgc-three);
   color: var(--default-c);
   padding: 5px 20px;
   font-size: 14px;
@@ -11,18 +11,23 @@
   background: transparent;
   font-size: 24px;
   cursor: pointer;
+  color: var(--bgc-two);
+  transition: color .2s cubic-bezier(.4,.0,.23,1);
+  &:hover {
+    color: var(--bgc-one);
+  }
 }
 
 .btn-ico {
   color: var(--neutral-regular);
   font-size: 18px;
   transition: all .2s cubic-bezier(.4,.0,.23,1);
-  &:hover {
+  &:hover:not(.active) {
     color: var(--neutral-primary);
     transform: scale(.9);
   }
   &.active {
-    color: #f50;
+    color: var(--some-two);
     transform: scale(.9);
   }
 }

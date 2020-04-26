@@ -4,10 +4,16 @@
     <div class="wrapper todos__wrapper">
       <div class="todos__dash">
         <div class="group">
-          <span class="todos__dash-item normal">Total tasks: {{ todoService.tasks.length }}</span>
-          <span class="todos__dash-item normal">Pinned tasks: {{ pinnedTasksTotal }}</span>
+          <span class="todos__dash-item">
+            Total tasks: <strong class="total">{{ todoService.tasks.length }}</strong>
+          </span>
+          <span class="todos__dash-item">
+            Pinned tasks: <strong class="pin">{{ todoService.pinnedTasksTotal | async }}</strong>
+          </span>
         </div>
-        <span class="todos__dash-item large">Completed tasks: {{ 0 }}</span>
+        <span class="todos__dash-item">
+          Completed tasks: <strong class="complete">{{ todoService.completeTasksTotal | async }}</strong>
+        </span>
       </div>
       <div class="todos__container" *ngIf="todoService.tasks.length; else noTasks">
         <app-todo-item *ngFor="let task of todoService.tasks" [taskItem]="task"></app-todo-item>
