@@ -6,6 +6,7 @@ export interface Todo {
   body: string
   date: any
   completeDate?: any
+  deletionDate?: any
   complete: boolean
   pinned: boolean
 }
@@ -30,7 +31,7 @@ export class TodoService {
       this.tasks.find((task) => {
         if (task.id === id) {
           task.complete = !task.complete;
-          task.completeDate = new Date;
+          task.completeDate = new Date();
         }
       })
       this.saveTasks(this.tasks);

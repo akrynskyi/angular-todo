@@ -1,27 +1,40 @@
-<router-outlet>
-  <app-header></app-header>
-  <section class="todos">
-    <div class="wrapper todos__wrapper">
-      <div class="todos__dash">
-        <div class="group">
-          <span class="todos__dash-item">
-            Total tasks: <strong class="total">{{ todoService.tasks.length }}</strong>
-          </span>
-          <span class="todos__dash-item">
-            Pinned tasks: <strong class="pin">{{ todoService.pinnedTasksTotal | async }}</strong>
-          </span>
-        </div>
+<router-outlet></router-outlet>
+
+<app-header></app-header>
+
+<section class="todos">
+  <div class="wrapper todos__wrapper">
+    <div class="todos__dash">
+      <div class="group">
         <span class="todos__dash-item">
-          Completed tasks: <strong class="complete">{{ todoService.completeTasksTotal | async }}</strong>
+          Total tasks: <strong class="total">{{ todoService.tasks.length }}</strong>
+        </span>
+        <span class="todos__dash-item">
+          Pinned tasks: <strong class="pin">{{ todoService.pinnedTasksTotal | async }}</strong>
         </span>
       </div>
-      <div class="todos__container" *ngIf="todoService.tasks.length; else noTasks">
-        <app-todo-item *ngFor="let task of todoService.tasks" [taskItem]="task"></app-todo-item>
-      </div>
-      <ng-template #noTasks>
-        <p>No tasks yet...</p>
-      </ng-template>
+      <span class="todos__dash-item">
+        Completed tasks: <strong class="complete">{{ todoService.completeTasksTotal | async }}</strong>
+      </span>
     </div>
-    <!-- close .wrapper -->
-  </section>
-</router-outlet>
+    <div class="todos__container" *ngIf="todoService.tasks.length; else noTasks">
+
+      <app-todo-item *ngFor="let task of todoService.tasks" [taskItem]="task"></app-todo-item>
+
+    </div>
+    <ng-template #noTasks>
+      <p>No tasks yet...</p>
+    </ng-template>
+  </div>
+  <!-- close .wrapper -->
+</section>
+
+<app-todo-recyclebin></app-todo-recyclebin>
+
+<section class="footer">
+  <div class="wrapper footer-wrapper">
+    <span>
+      <i class="fas fa-pencil-alt"></i>
+    </span>
+  </div>
+</section>

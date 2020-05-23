@@ -39,3 +39,17 @@ body {
   transform: rotate(45deg);
   margin-left: 15px;
 }
+
+.date {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.placeholder {
+  color: var(--default-c);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}

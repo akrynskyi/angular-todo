@@ -1,0 +1,82 @@
+.overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0, 0.6);
+  backdrop-filter: blur(5px);
+  transition: opacity .2s ease-in-out;
+  z-index: 10;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.recycle-window {
+  width: 70vw;
+  height: 80vh;
+  background-color: var(--bgc-two);
+  position: relative;
+  padding: 20px;
+  box-shadow:
+    0 0.2px 3.7px rgba(0, 0, 0, 0.139),
+    0 1.3px 10.1px rgba(0, 0, 0, 0.2),
+    0 3.8px 24.4px rgba(0, 0, 0, 0.261),
+    0 11px 81px rgba(0, 0, 0, 0.4)
+  ;
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--default-c);
+    padding: 0px 20px 20px 20px;
+
+    & > span {
+      margin-left: 10px;
+    }
+  }
+  &__scrollable {
+    overflow: auto;
+    height: calc(100% - 70px);
+    padding: 0px 20px;
+  }
+  &__item {
+    height: 150px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: var(--bgc-extra-2);
+    padding: 15px;
+    display: flex;
+    &:last-child {
+      margin-bottom: 0px;
+    }
+    &-header {
+      margin-bottom: 15px;
+    }
+    &-body {
+      width: 80%;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+}
+
+.btn-recycle-close {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  color: var(--default-c);
+  cursor: pointer;
+}

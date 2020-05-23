@@ -1,0 +1,56 @@
+<section class="recyclebin">
+  <button class="btn-circle" title="Recycle bin" (click)="toggleRecycleWindow()">
+    <i class="fas fa-trash-restore"></i>
+  </button>
+  <div class="overlay" [class.active]="overlayToggle">
+    <div class="recycle-window">
+      <h1 class="recycle-window__title">
+        <i class="fas fa-recycle"></i>
+        <span>Recycle bin</span>
+      </h1>
+      <button class="btn-ico btn-default btn-recycle-close" (click)="toggleRecycleWindow()">
+        <i class="fas fa-times-circle"></i>
+      </button>
+
+      <div class="recycle-window__scrollable" *ngIf="recycleTasks.length; else recycleEmpty">
+
+        <div class="recycle-window__item" *ngFor="let task of recycleTasks">
+
+          <div class="recycle-window__item-body">
+            <div class="recycle-window__item-header">
+              <div class="date">
+                <span *ngIf="task.date !== undefined">
+                  Create at {{ task.date | date: 'dd MMMM HH:mm' }}
+                </span>
+                <span *ngIf="task.completeDate !== undefined">
+                  <b>></b> Complete at {{ task.completeDate | date: 'dd MMMM HH:mm' }}
+                </span>
+                <span *ngIf="task.deletionDate !== undefined">
+                  <b>></b> Delete at {{ task.deletionDate | date: 'dd MMMM HH:mm' }}
+                </span>
+              </div>
+            </div>
+            <p class="text">
+              {{ task.body }}
+            </p>
+          </div>
+
+          <div class="actions">
+            <button class="btn-default btn-ico" title="Delete" (click)="deleteTask(task.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button class="btn-default btn-ico">
+              <i class="fas fa-arrow-circle-right"></i>
+            </button>
+          </div>
+        </div>
+        <!-- close .recycle-window__item -->
+      </div>
+      <ng-template #recycleEmpty>
+        <div class="placeholder">
+          <p>Empty...</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>

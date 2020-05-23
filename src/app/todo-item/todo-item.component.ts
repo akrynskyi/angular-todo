@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TodoService, Todo } from '../shared/todo.service';
+import { RecycleService } from '../shared/recycle.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -9,7 +10,10 @@ import { TodoService, Todo } from '../shared/todo.service';
 export class TodoItemComponent implements OnInit {
   @Input() taskItem: Todo;
 
-  constructor(public todoService: TodoService) { }
+  constructor(
+    private todoService: TodoService,
+    private recycleService: RecycleService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +29,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   removeTask(id: number) {
+    this.recycleService.getItem(this.taskItem);
     this.todoService.remove(id);
     this.todoService.saveTasks(this.todoService.tasks);
   }

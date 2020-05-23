@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
+import { TodoRecyclebinComponent } from './todo-recyclebin/todo-recyclebin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    TodoItemComponent
+    TodoItemComponent,
+    TodoRecyclebinComponent
   ],
   imports: [
     BrowserModule,

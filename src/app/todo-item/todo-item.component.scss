@@ -13,9 +13,6 @@
     0 12px 38px rgba(0, 0, 0, 0.17);
   transform-style: preserve-3d;
   transition: transform 1s linear;
-  // &:hover {
-  //   transform: rotateY(.5turn);
-  // }
   &.complete {
     transform: rotateY(.5turn);
   }
@@ -59,11 +56,6 @@
     justify-content: center;
     margin-top: 15px;
   }
-}
-
-.date {
-  font-size: 14px;
-  font-weight: 300;
 }
 .center {
   font-size: 28px;
